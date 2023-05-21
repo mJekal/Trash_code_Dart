@@ -14,8 +14,7 @@ class _InformationScreenState extends State<InformationScreen> {
   final _formKey = GlobalKey<FormState>();
 
   void _informationView() {
-    String info =
-        '학번: ${_studentID ?? '선택 안됨'}\n'
+    String info = '학번: ${_studentID ?? '선택 안됨'}\n'
         '나이: ${_age ?? '선택 안됨'}\n'
         '성별: ${_gender ?? '선택 안됨'}\n'
         '흡연 여부: ${_isSmoking ?? '선택 안됨'}';
@@ -164,7 +163,32 @@ class _InformationScreenState extends State<InformationScreen> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet<void>(
+            context: context,
+            builder: (BuildContext context) {
+              return ListView(
+                children: [
+                  ListTile(
+                    title: Text('학번: ${_studentID ?? '선택 안됨'}'),
+                  ),
+                  ListTile(
+                    title: Text('나이: ${_age ?? '선택 안됨'}'),
+                  ),
+                  ListTile(
+                    title: Text('성별: ${_gender ?? '선택 안됨'}'),
+                  ),
+                  ListTile(
+                    title: Text('흡연 여부: ${_isSmoking ?? '선택 안됨'}'),
+                  ),
+                ],
+              );
+            },
+          );
+        },
+        child: Icon(Icons.list),
+      ),
     );
   }
 }
-
